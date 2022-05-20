@@ -7,44 +7,35 @@ from collections import deque
 class Solution:
     def updateMatrix(self, mat: List[List[int]]) -> List[List[int]]:
         movements=[[-1,0],[1,0],[0,-1],[0,1]]
-
-        def bfs(row_start,col_start):
-            visit=[]
-            queue=deque([[row_start,col_start]])
-
-            while queue:
-                row,col=queue.popleft()
-                visit.append([row,col])
-                if row<0 or row>=m or col<0 or col>=n:
-                    continue
+        rows,cols=len(mat),len(mat[0])
+        visit=[[False]*cols for i in range(rows)]
+        result=[[-1]*cols for i in range(rows)]
+        queue=deque()
+        for row in range(rows):
+            for col in range(cols):
                 if mat[row][col]==0:
-                    row_end=row
-                    col_end=col
-                    break
-                else:
-                    for row_move,col_move in movements:
-                        row_new=row+row_move
-                        col_new=col+col_move
-                        if [row_new,col_new] not in visit:
-                            queue.append([row_new,col_new])
-            return abs(row_end-row_start)+abs(col_end-col_start)
-
-
-
-
-
-        m,n=len(mat),len(mat[0])
-        result=[[0]*n for i in range(m)]
-        for row in range(m):
-            for col in range(n):
-                result[row][col]=bfs(row,col)
+                    result[row][col]=0
+                    queue.append([row,col])
+                    visit[row][col]=True
+        while queue:
+            row,col=queue.popleft()
+            for movement in movements:
+                new_row,new_col=row+movement[0],col+movement[1]
+                if new_row>=0 and new_row<rows and new_col>=0 and new_col<cols and visit[new_row][new_col]==False:
+                    result[new_row][new_col]=result[row][col]+1
+                    visit[new_row][new_col]=True
+                    queue.append([new_row,new_col])
         return result
+
+
+
+
 
 
 if __name__=='__main__':
     print(Solution().updateMatrix(
+        [[0, 1, 0], [0, 1, 0], [0, 1, 0], [0, 1, 0], [0, 1, 0]]
 
-        [[0, 1, 0, 1, 1], [1, 1, 0, 0, 1], [0, 0, 0, 1, 0], [1, 0, 1, 1, 1], [1, 0, 0, 0, 1]]
     ))
 
 
