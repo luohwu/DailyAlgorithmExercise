@@ -26,7 +26,9 @@ class Solution:
         result=[i for i in range(n) if height[i]==min_height]
         return result
 
-    def findMinHeightTrees(self, n: int, edges: List[List[int]]) -> List[int]:
+    # faster than the findMinHeightTreesSlow,
+    # but still exceed time limit
+    def findMinHeightTreesSlow2(self, n: int, edges: List[List[int]]) -> List[int]:
         def search(start):
             self.visit[start]=True
             height_child=[0]
@@ -55,7 +57,31 @@ class Solution:
         result=[i for i in range(n) if height[i]==min_height]
         return result
 
+    # think about it twice,
+    # the MinHeightTree must be the mid points of the longest path of the given tree
+    def findMinHeightTrees(self, n: int, edges: List[List[int]]) -> List[int]:
+        if n==1:
+            return [0]
+        tree=defaultdict(list)
+        for edge in edges:
+            p1,p2=edge
+            tree[p1].append(p2)
+            tree[p2].append(p1)
 
+
+        leaves=[node for node in tree.keys() if len(tree[node])==1]
+
+
+        # while there are more than 2 points in the tree
+        # keep removing leave ndoes
+        while len(tree)>2:
+            # print(leaves)
+            for leave in leaves:
+                par=tree.pop(leave)
+                # update the eage of the tree
+                tree[par[0]].remove(leave)
+            leaves=[node for node in tree.keys() if len(tree[node])==1]
+        return list(tree.keys())
 
 
 
@@ -63,5 +89,6 @@ class Solution:
 
 if __name__=='__main__':
     print(Solution().findMinHeightTrees(
-        n = 6, edges = [[3,0],[3,1],[3,2],[3,4],[5,4]]
+        6,
+        [[0, 1], [0, 2], [0, 3], [3, 4], [4, 5]]
     ))
