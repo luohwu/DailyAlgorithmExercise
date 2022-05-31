@@ -16,6 +16,7 @@ class Solution:
             k-=1
         return result
 
+# just update git code
 if __name__=='__main__':
     print(Solution().kClosest(
         points=[[3, 3], [5, -1], [-2, 4]], k=2
