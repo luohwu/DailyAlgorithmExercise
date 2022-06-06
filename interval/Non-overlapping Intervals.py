@@ -4,11 +4,11 @@ from typing import  List
 class Solution:
     def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
         intervals=sorted(intervals)
-        print(intervals)
         s,e=intervals[0]
         res=0
         for new_s,new_e in intervals[1:]:
             if new_s<e:
+                e=min(e,new_e)
                 res+=1
             else:
                 e=new_e
