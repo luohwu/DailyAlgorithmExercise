@@ -4,7 +4,7 @@ from typing import List
 
 class Solution:
 
-    # time complexity: O(n)
+    # time complexity: O(n^2)
     # space complexity: O(n) beat 99.37% submissions, can be optimized to O(1) by modifying the input gas or cost
     def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
 
