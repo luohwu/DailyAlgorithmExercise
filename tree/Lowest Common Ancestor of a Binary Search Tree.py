@@ -28,8 +28,8 @@ class Solution:
                 val_right_subtree=preorder_result[preorder_result.index(node.right.val):]
 
                 # if p and q are in two different subtrees
-                if (node.left.val in val_left_subtree and node.right.val in val_left_subtree) or \
-                    (node.left.val in val_right_subtree and node.right.val in val_left_subtree):
+                if (p.val in val_left_subtree and q.val in val_right_subtree) or \
+                    (q.val in val_left_subtree and p.val in val_right_subtree):
                     return node
 
             # if current value is p's value or q's value
