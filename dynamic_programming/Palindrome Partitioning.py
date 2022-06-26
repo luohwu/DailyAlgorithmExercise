@@ -4,7 +4,7 @@
 from typing import List
 
 class Solution:
-    # first we apply dynamic programming to compute a dp_table[left][right]
+    # first we apply dynamic_programming to compute a dp_table[left][right]
     # s[left:right+1] is a palindrome only if dp_table[left][right]==True
 
     # Having the dp_table ready,

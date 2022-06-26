@@ -4,7 +4,7 @@ from typing import List
 
 class Solution:
 
-    # dynamic programming
+    # dynamic_programming
     # 'dp' is our table, with dp[i] indicates the maximum sum of subarray that involves nums[i]
     # Time O(n)
     # Space O(n) beats 96.35% of other submissions

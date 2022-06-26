@@ -3,7 +3,7 @@ from typing import List
 
 
 class Solution:
-    # The idea is similar to dynamic programming/Triangle.py
+    # The idea is similar to dynamic_programming/Triangle.py
     # Time : O(rows*cols)
     # Space: O(rows*cols)
     def minPathSum(self, grid: List[List[int]]) -> int:
